@@ -41,6 +41,16 @@ io.on('connection', (socket)=>{
 io.on('connection', (socket)=>{
   socket.on('clientemit', (msg)=>console.log(msg));
 })
+//broadcast data
+io.on('connection', (socket)=>{
+  io.sockets.emit("broadcast","this is broadcast data send to server");
+})
+//spacipic data send
+const sellSpn = io.of('/sell')
+sellSpn.on('connection', (socket)=>{
+  sellSpn.emit('spEvent', 'dada send')
+})
+
 app.get('/',(req,res)=>{
   res.sendFile(__dirname+"/index.html")
 })

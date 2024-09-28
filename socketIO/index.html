@@ -5,7 +5,8 @@
 </head>
 <body>
   <h1 id="serverDataShow"></h1>
-  <p id="customkey"></p>
+  <h1 id="customkey"></h1>
+  <h1 id="broadcast"></h1>
 <div>
   <input id="inputValue" type="text" value="" />
     <button onclick="send()">send</button>
@@ -38,6 +39,17 @@ socket.on('custom',(msg)=>{
   socket.emit('clientemit',data);
   document.getElementById('inputValue').value="";
   }
+  socket.on('broadcast', (smg)=>{
+    document.getElementById("broadcast").innerHTML=smg;
+  })
+  //spacipic data 
+  // first 
+  // let socket = io('/sell')
+  /*
+  socket.on('spEvent', (data)=>{
+    document.getElementById('broadcast').innerHTML=data;
+  })
+  */
 </script>
 </body>
 </html>
