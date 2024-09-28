@@ -4,6 +4,40 @@
 <title>Page Title</title>
 </head>
 <body>
-<p>hello socket run</p>
+  <h1 id="serverDataShow"></h1>
+  <p id="customkey"></p>
+<div>
+  <input id="inputValue" type="text" value="" />
+    <button onclick="send()">send</button>
+     <button onclick="sendcustom()">custom key</button>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+let socket =io();
+//serve sent accept data client
+socket.on('message', (smg)=>{
+  document.getElementById("serverDataShow").innerHTML = smg;
+})
+//railtime data send server recived client
+socket.on('message',(msg)=>{
+  document.getElementById("serverDataShow").innerHTML = smg;
+})
+//custom key
+socket.on('custom',(msg)=>{
+  document.getElementById("customkey").innerHTML = msg;
+})
+//send data client to server
+  function send(){
+    let data = document.getElementById('inputValue').value;
+  socket.send(data);
+  document.getElementById('inputValue').value="";
+  }
+  //custom key
+  function sendcustom(){
+    let data = document.getElementById('inputValue').value;
+  socket.emit('clientemit',data);
+  document.getElementById('inputValue').value="";
+  }
+</script>
 </body>
 </html>
